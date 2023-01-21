@@ -3,7 +3,7 @@ import sqlalchemy
 from sqlalchemy.orm import sessionmaker
 from models import create_tables, Publisher, Book, Shop, Stock, Sale
 
-DNS = 'postgresql://postgres:Fozeqwxu2@localhost:5432/book_shops'
+DNS = 'postgresql://postgres:postgres@localhost:5432/book_shops'
 engine = sqlalchemy.create_engine(DNS)
 create_tables(engine)
 
@@ -38,6 +38,5 @@ for c in session.query(
                     Sale, Stock.id == Sale.id_stock).filter(
                         Publisher.name == publisher_input):
     print(c)
-
 
 session.close()
