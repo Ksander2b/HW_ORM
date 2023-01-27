@@ -27,7 +27,7 @@ session.commit()
 
 publisher_input = input('Введите имя или идентификатор издателя: ')
 
-for c in session.query(
+for book, shop, price, date in session.query(
     Book.title, 
     Shop.name, 
     Sale.price, 
@@ -37,6 +37,6 @@ for c in session.query(
                 Shop, Shop.id == Stock.id_book).join(
                     Sale, Stock.id == Sale.id_stock).filter(
                         Publisher.name == publisher_input):
-    print(c)
+    print(f'{book} | {shop} | {price} | {date}')
 
 session.close()
